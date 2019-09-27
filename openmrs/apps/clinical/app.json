@@ -1,0 +1,340 @@
+{
+    "id": "bahmni.clinical",
+    "extensionPoints": [
+        {
+            "id": "org.bahmni.clinical.consultation.board",
+            "description": "Bahmni Clinical Consultation Page"
+        },
+        {
+            "id": "org.bahmni.clinical.conceptSetGroup.*",
+            "description": "Define conceptsets part of a conceptset group"
+        },
+        {
+            "id": "org.bahmni.clinical.orders",
+            "description": "Bahmni Orders Page"
+        },
+        {
+            "id": "org.bahmni.patient.search",
+            "description": "Bahmni Patient search, lookups Page"
+        }
+    ],
+    "contextModel": [
+        "patientUuid",
+        "visitUuid"
+    ],
+    "config": {
+        "hideConditions": false,
+        "enableRadiologyOrderOptions":["Urgent","NeedsPrint"],
+        "enableLabOrderOptions":["Urgent", "NeedsPrint"],
+        "quickPrints":false,
+        "networkConnectivity" : {
+            "showNetworkStatusMessage": false,
+            "networkStatusCheckInterval": 20000,
+            "locales" : [
+                { "locale" : "fr", "css" : "offline-language-french"},
+                { "locale" : "es", "css": "offline-language-spanish"},
+                { "locale" : "pt", "css": "offline-language-portuguese-brazil"}
+            ]
+        },
+    	"diagnosisStatus": "Inactive",
+            "program": {
+                "patientInformation": {
+                    "ageLimit": 100
+                }, 
+                "Doctor": {
+                    "excludeFrom": ["HIV Program","HEI Program","ART Program","PMTCT Program"]
+                },
+                "Stage":{
+                    "excludeFrom": ["HEI Program","PMTCT Program"]
+                }
+            },
+            "patientContext": {
+        		"programAttributes": [
+            		
+            		"Doctor",
+                    "Stage"
+                    
+        		],
+        		"personAttributes": [
+            		"class",
+            		"caste"
+                ]
+    	},
+        "obsIgnoreList": [
+            "REGISTRATION FEES",
+            "COMMENTS",
+            "Patient file"
+        ],
+        "otherInvestigationsMap": {
+            "Radiology": "Radiology Order",
+            "Endoscopy": "Endoscopy Order"
+        },
+        "allowConsultationWhenNoOpenVisit": false,
+        "defaultVisitType": "OPD",
+        "visitTypeForRetrospectiveEntries": "Special OPD",
+        "maxConceptSetLevels": 3,
+        "allowOnlyCodedDiagnosis": false,
+        "conceptSetUI": {
+            "Chief Complaint Data": {
+                "autocomplete":true,
+                "codedConceptName":"Chief Complaint",
+                "nonCodedConceptName":"Non-Coded Chief Complaint",
+                "durationRequired": false,
+                "allowAddMore": true
+            },
+            "Tuberculosis, Adverse Effects" :{
+                "multiSelect" : true,
+                "autocomplete" : true
+            },
+            "Posture": {
+                "buttonSelect": true
+            },
+            "P/A Presenting Part": {
+                "multiSelect": true
+            },
+            "FHS": {
+                "buttonSelect": true
+            },
+            "P/S (Per Speculum) - Cervix": {
+                "grid": true
+            },
+            "Anaemia, Stopped Since When": {
+                "conciseText": true
+            },
+            "Examination Notes": {
+                "conciseText": true
+            },
+            "Set1": {
+                "allowAddMore": true
+            },
+            "Set2": {
+                "allowAddMore": true
+			},
+            "Coded3": {
+                "multiSelect": true
+            },
+            "Image": {
+                "allowAddMore": true
+            },
+            "Gynaecology, Gravida": {
+                "stepper": true      
+            },
+            "Consultation Images": {
+                "allowAddMore": true      
+            },
+            "General Family Information": {
+                "allowAddMore": true
+            },
+			"ART Regimen - Substitution within 1st Line": {
+                "allowAddMore": true
+            },			
+            "Accepted Family Planning methods": {
+                "multiSelect": true
+            },
+            "Other Entry Point":{
+                 "required":true
+            },
+            "Other - Occupation":{
+                "required":true
+            },
+            "HIV - Entry Point":{
+                 "required":true
+            },
+            "Name of Clinic":{
+                 "required":true
+            },
+            "Date Transferred in":{
+                 "required":true
+            },
+            "Literate":{
+                 "required":true
+            },
+            "Education Level":{
+                "required":true
+            },
+            "HIV Care - Alcohol Intake":{
+                "required":true
+            },
+            "Drug Allergies":{
+                 "required":true
+            },
+            "HIV Care -Drug Allergies Notes":{
+                 "required":true
+            },
+            "ARVs Received in":{
+                "required":true
+            },
+            "Place Received ART":{
+                "required":true
+            },
+            "Other (Place specify)":{
+                 "required":true
+            },
+            "Were ARVS Received , In Clinical Milestones":{
+                 "required":true
+            },
+            "ART Follow up - Scheduled Date":{
+                  "required":true
+            },
+            "FP Method":{
+                   "required":true
+            },
+            "Number of Days Hospitalized":{
+                  "required":true
+            },
+            "Child Regimen Information":{
+                   "allowAddMore": true
+            },
+            "ART Regimen(Switch to 2nd Line)":{
+                    "allowAddMore": true
+            },
+            "Reason":{
+                   "required":true
+            },
+            "Specify Reason For Art Stop":{
+                "required":true
+            },
+            "Other Reason":{
+                "required":true
+            },
+            "Other Reason(Second Regimen Change)":{
+                "required":true
+            },
+            "Regimen Switched To":{
+                "required":true
+            },
+            "ART Treatment Reasons For Stop":{
+                "required":true
+            },
+            "Other Reason(First Line Regimen Change)":{
+                "required":true 
+            },
+            "Immunization Not Given":{
+                "required":true
+            },
+            "Specify other Assessement":{
+                "required":true
+            },
+            "Development Milestones Missed":{
+                "required":true
+            },
+            "Specify other Mother's ART Regimen":{
+                "required":true
+            },
+            "HEI Treatment - Enrolled AT ART Date":{
+                "required":true
+            },
+            "HEI Treatment - Referred To ART Clinic Date":{
+                "required":true
+            },
+            "ANC, ART Start Date":{
+                "required":true
+            },
+            "CTX or Dapose Start Date":{
+                "required":true
+            },
+            "Classification Of Adherence":{
+                "required":true
+            },
+            "EDD":{
+                "required":true
+            },
+            "PMTCT - HIV & ART Follow up":{
+                "required":true
+            },
+            "WHO Stage":{
+                "dropdown":true 
+            }, 
+            "Medical History":{
+                "multiSelect" : true
+            }, 
+            "GeneXpert , Result":{
+                "dropdown":true 
+            },
+            "AFB Microscopic, Results":{
+                "dropdown":true 
+            },
+            "CxR Results":{
+                "dropdown":true 
+            }, 
+            "GeneXpert Information":{
+                "isTabular": true
+            }, 
+            "AFB Microscopic":{
+                "isTabular": true
+            },
+            "FNA":{
+                "isTabular": true
+            },
+            "Culture, TB Investigations":{
+                "isTabular": true
+            },
+            "Crx":{
+                "isTabular": true
+            }, 
+             "First Attempt Method":{
+                 "dropdown":true
+             },  
+             "First Attempt Outcome":{
+                "dropdown":true
+            }, 
+            "Second Attempt Method":{
+                "dropdown":true
+            }, 
+            "Third Attempt Method":{
+                "dropdown":true
+            }, 
+            "Third Attempt Outcome":{
+                "dropdown":true
+            },
+            "Fourth Attempt Method":{
+                "dropdown":true
+            }, 
+            "Fourth Attempt Outcome":{
+                "dropdown":true
+            },
+            "Outcome,Second Attempt":{
+                "dropdown":true
+            },
+            "Other Follow up Method Specify(First Attempt)":{
+                "required":true
+            },
+            "Follow up Outcome Others Specify(First Attempt)":{
+                "required":true
+            },
+            "Other Follow up Method Specify(Second Attempt)":{
+                "required":true
+            },
+            "Follow up Outcome Others Specify(Second Attempt)":{
+                "required":true
+            },
+            "Other Follow up Method Specify(Third Attempt)":{
+                "required":true
+            },
+            "Follow up Outcome Others Specify(Third Attempt)":{
+                "required":true
+            },
+            "Other Follow up Method Specify(Fourth Attempt)":{
+                "required":true
+            },
+            "Follow up Outcome Others Specify(Fourth Attempt)":{
+                "required":true
+            },
+            "defaults": {
+                "Number of living children": 1,
+                "Accepted Family Planning methods": [
+                    "Condoms",
+                    "Pills"
+                ],
+                "Pain management given": true,
+                "Safe Abortion, Remarks": "Remarks",
+                "Malaria, Death Date": "2015-12-01"
+            }
+        },
+        "visitPage": {
+            "observationDisplay": {
+                "conceptNames": []
+            }
+        }
+    }
+}

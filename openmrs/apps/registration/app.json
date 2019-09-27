@@ -1,0 +1,164 @@
+{
+        "id": "bahmni.registration",
+        "instanceOf":"bahmni.template.registration",
+        "description": "Bahmni Patient Registration App",
+        "extensionPoints": [
+            {
+                "id": "org.bahmni.registration.patient.search.result.action",
+                "description": "Bahmni Patient Search Result Action"
+            },
+            {
+                "id": "org.bahmni.registration.patient.next",
+                "description": "After Bahmni Patient Registration, forward url configuration"
+            }
+        ],
+        "contextModel": [
+            "patientUuid",
+            "activeVisitUuid"
+        ],
+        "config" : {
+            "patientInformation": {
+                "registrantInformation": {
+                    "title": "Registrant Information",
+                    "attributes": [
+                        "HealthFacilityName",
+                        "TodaysDate",
+                        "RegistrantName"
+                    ],
+					"expand": true,
+					"order": 1
+                },
+                "registerNewPatient1": {
+                    "title": "Register A New Patient",
+                    "attributes": [
+                        "TypeofPatient"
+                    ],
+					"expand": true,
+					"order": 2
+                },
+                "registerNewPatient2": {
+                    "title": "Not shown",
+                    "attributes": [
+						"UniqueArtNo",
+                        "HIVExposedInfant(HEI)No"
+                    ],
+					"expand": true,
+					"order": 3
+                },
+                "registerNewPatient3": {
+                    "title": "Not shown",
+                    "attributes": [
+						"MaritalStatus"
+                    ],
+					"expand": true,
+					"order": 4
+                },
+                "registerNewPatient5": {
+                    "title": "Not shown",
+                    "attributes": [
+						"MobileCountryCode",
+						"MobileNumber",
+						"AlternativeNumber"
+                    ],
+					"expand": true,
+					"order": 5
+                },
+                "CaregiverFollowUp": {
+                    "title": "Mother Follow Up Information",
+                    "attributes": [
+						"HeiChildMothersName",
+						"MotherInCareAtArtClinic",
+						"MothersArtNo",
+						"FacilityName",
+                        "MothersContactNumber"
+                    ],
+					"expand": true,
+					"order": 6
+                },
+                "alternateContactInformation": {
+                    "title": "Alternative Caregiver",
+                    "attributes": [
+						"AlternateContactPerson",
+						"TelephoneNo",
+						"AlternateContactPersonLocation",
+						"AlternateContactPersonRelationship",
+						"ContactPersonDisclosedTo"
+                    ],
+					"expand": true,
+					"order": 7
+                },
+                "treatmentSupporter": {
+                    "title": "Treatment Supporter",
+                    "attributes": [
+                        "TreatmentSupporterFirstName",
+                        "TreatmentSupporterLastName",
+						"TreatmentSupporterTelephoneNumber",
+						"TreatmentSupporterAddress",
+						"HomeCareProvidedBy"
+                    ],
+					"expand": true,
+					"order": 8
+                },
+				"defaults":  {
+                    "MobileCountryCode": "South Sudan"
+                }
+            },
+            "addressHierarchy": {
+                "showAddressFieldsTopDown": true,
+                "strictAutocompleteFromLevel": "address0"
+            },
+            "relationshipTypeMap": {
+                "Doctor":"provider",
+                "Parent":"patient"
+            },
+
+			"disablePhotoCapture": true,
+			"showEnterID": false,
+			"dobMandatory": true,
+            "autoCompleteFields":["familyName", "givenName"],
+            "defaultVisitType": "OPD",
+            "searchByIdForwardUrl": "/patient/{{patientUuid}}",
+            "showMiddleName": true,
+            "showLastName": true,
+            "isLastNameMandatory": false,
+            "showSaveConfirmDialog": false,
+            "showBirthTime": false,
+            "showCasteSameAsLastNameCheckbox": false,
+            "printOptions": [
+                {
+                    "translationKey": "REGISTRATION_PRINT_REG_CARD_LOCAL_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_local.html",
+                    "shortcutKey": "l"
+                }
+               
+            ],
+            "conceptSetUI": {
+                "FHS": {
+                    "buttonSelect": true
+                },
+                "defaults":{
+                    "FHS": "Present"
+                }
+            },
+            "fieldValidation" : {
+                "primaryContact" : {"pattern" : "[0-9]{8,10}", "errorMessage" : "Should be 12 characters starting with 91 (country code)"},
+                "landHolding" : {"pattern" : "[0-9]{0,3}", "errorMessage" : "Should be between 1 to 999 acres"},
+                "familyName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "givenName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "middleName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "address1" : {"pattern" : "[a-zA-Z0-9\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"},
+				"TreatmentSupporterTelephoneNumber" : {"pattern" : "[0-9]{0,10}", "errorMessage" : "Should be 10 digits"},
+				"TelephoneNo" : {"pattern" : "[0-9]{0,10}", "errorMessage" : "Should be 10 digits"},
+				"MothersContactNumber" : {"pattern" : "[0-9]{0,10}", "errorMessage" : "Should be 10 digits"},
+				"MobileNumber" : {"pattern" : "[0-9]{0,10}", "errorMessage" : "Should be 10 digits"},
+				"AlternativeNumber" : {"pattern" : "[0-9]{0,10}", "errorMessage" : "Should be 10 digits"}
+            },
+            "patientSearch": {
+                "customAttributes": {
+                    "label": "Unique Art No.",
+                    "placeholder": "Enter Unique Art No",
+                    "fields": ["UniqueArtNo","MaritalStatus","Cohort"]
+                }
+            }
+        }
+}
